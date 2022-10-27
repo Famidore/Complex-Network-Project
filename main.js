@@ -7,5 +7,3 @@ function draw() {
   background(51);
   temp();
 }
-
-
