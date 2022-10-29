@@ -21,7 +21,7 @@ def getRecommendations(url):
 
 
 
-temp = getRecommendations('https://www.reddit.com/r/rodentintercourse/')
-print(temp)
+temp = getRecommendations(input())
+# print(temp)
 for i in temp:
     getRecommendations(f'https://www.reddit.com/{i}')
