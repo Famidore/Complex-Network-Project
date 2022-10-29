@@ -8,8 +8,9 @@ def getRecommendations(url):
     listed = []
     # print(pageContent)
     soup = BeautifulSoup(pageContent, 'lxml')
-    title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
+    # title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
     while True:
+        title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
         if title == []:
             print('Extended the limit \n Waiting...\n')
             time.sleep(60)
