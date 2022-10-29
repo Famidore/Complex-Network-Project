@@ -25,7 +25,7 @@ def getRecommendations(url):
 
 starter =  input('Submit a reddit community link: ')
 def doStuff(tag):
-    if tag != []:
+    if tag:
         for item in tag:
             getRecommendations(f'https://www.reddit.com/{item}')
             doStuff(item)
