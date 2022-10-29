@@ -13,7 +13,9 @@ def getRecommendations(url):
         title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
         if title == []:
             print('Extended the limit \n Waiting...\n')
-            time.sleep(60)
+            for i in range(6):
+                print(f'Waiting {60 - i*10} sec...')
+                time.sleep(10)
         else:
             print(f'\n Recommendations for {url}: \n')
             # print(title)
