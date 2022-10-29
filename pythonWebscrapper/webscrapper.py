@@ -10,7 +10,8 @@ def getRecommendations(url):
     soup = BeautifulSoup(pageContent, 'lxml')
     title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
     if title == []:
-        print('Waiting...')
+        print('Extended the limit \n Waiting...\n')
+        time.sleep(60)
     else:
         print(f'\n Recommendations for {url}: \n')
         # print(title)
