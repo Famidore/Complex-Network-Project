@@ -12,8 +12,8 @@ def getRecommendations(url):
     if title == []:
         print('\nExtended the limit \n Waiting...\n')
         for i in range(5):
-            print(f'Waiting {i*2 + 2} sec...')
-            time.sleep(2)
+            print(f'Waiting {i*5 + 5} sec...')
+            time.sleep(5)
     else:
         print(f'\n Recommendations for {url}: \n')
         for i in title:

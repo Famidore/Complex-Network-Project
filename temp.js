@@ -2,6 +2,8 @@ var tempX, tempY, tempSpeedX, tempSpeedY;
 
 
 function tempSetup(sizeX, sizeY) {
+    canvas.mouseWheel(e => Controls.zoom(controls).worldZoom(e))
+
     // temp setup
     sX = sizeX;
     sY = sizeY;
@@ -27,3 +29,22 @@ function temp() {
         tempSpeedY *= -1
     }
 }
+
+function misc() {
+    textSize(20);
+    textAlign(LEFT);
+    text('Paste a video link below', input.x, input.y - 20);
+}
+
+function inputSetup() {
+    input = createInput();
+    input.style('color', '#8400ff');
+    input.position(50, windowHeight - 50);
+  
+    button = createButton('submit');
+    button.style('background-color', color(200));
+    button.position(input.x + input.width, windowHeight - 50);
+    button.mousePressed(gatherURL);
+  }
+
+

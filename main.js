@@ -1,34 +1,24 @@
-let button, input;
+let button, input, canvas;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(windowWidth, windowHeight);
   tempSetup(windowWidth, windowHeight);
   inputSetup();
-
 }
 
 function draw() {
   background(51);
+  misc();
+
+  translate(controls.view.x, controls.view.y);
+  scale(controls.view.zoom)
+
   temp();
-  
-  textSize(20);
-  textAlign(LEFT);
-  text('Paste a video link below', input.x, input.y - 20);
-}
-
-function inputSetup() {
-  input = createInput();
-  input.style('color', '#8400ff');
-  input.position(50, windowHeight - 50);
-
-  button = createButton('submit');
-  button.style('background-color', color(200));
-  button.position(input.x + input.width, windowHeight - 50);
-  button.mousePressed(gatherURL);
 }
 
 function gatherURL() {
-  
   print('hello');
-
 }
+
+
+
