@@ -28,6 +28,12 @@ function temp() {
     if (tempY >= sY - 50 || tempY <= 50) {
         tempSpeedY *= -1
     }
+
+    if (mouseIsPressed) {
+        cursor(HAND)
+    } else {
+        cursor(ARROW)
+    }
 }
 
 function misc() {
@@ -40,11 +46,11 @@ function inputSetup() {
     input = createInput();
     input.style('color', '#8400ff');
     input.position(50, windowHeight - 50);
-  
+
     button = createButton('submit');
     button.style('background-color', color(200));
     button.position(input.x + input.width, windowHeight - 50);
     button.mousePressed(gatherURL);
-  }
+}
 
 
