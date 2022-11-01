@@ -1,4 +1,5 @@
-let button, input, canvas;
+let button, input, canvas, t;
+
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -8,6 +9,7 @@ function setup() {
 
 function draw() {
   background(51);
+  t = frameCount / 60;
   misc();
 
   translate(controls.view.x, controls.view.y);
