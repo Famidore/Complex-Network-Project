@@ -1,4 +1,6 @@
 var tempX, tempY, tempSpeedX, tempSpeedY;
+let snowflakes = [];
+
 
 
 function tempSetup(sizeX, sizeY) {
@@ -14,6 +16,16 @@ function tempSetup(sizeX, sizeY) {
 }
 
 function temp() {
+    noStroke();
+    for (let i = 0; i < random(5); i++) {
+        snowflakes.push(new snowflake()); // append snowflake object
+    }
+
+    for (let flake of snowflakes) {
+        flake.update(t); // update snowflake position
+        flake.display(); // draw snowflake
+    }
+
     textSize(100);
     textAlign(CENTER);
     fill(255, 0, 150);
@@ -34,12 +46,14 @@ function temp() {
     } else {
         cursor(ARROW)
     }
+
+
 }
 
 function misc() {
     textSize(20);
     textAlign(LEFT);
-    text('Paste a video link below', input.x, input.y - 20);
+    text('Paste a reddit community link below', input.x, input.y - 20);
 }
 
 function inputSetup() {
@@ -54,3 +68,28 @@ function inputSetup() {
 }
 
 
+function snowflake() {
+    this.posX = 0;
+    this.posY = random(-50, 0);
+    this.initialangle = random(0, 2 * PI);
+    this.size = random(2, 5);
+
+    this.radius = sqrt(random(pow(width / 2, 2)));
+
+    this.update = function (time) {
+        let w = 0.6;
+        let angle = w * time + this.initialangle;
+        this.posX = width / 2 + this.radius * sin(angle);
+
+        this.posY += pow(this.size, 0.5);
+
+        if (this.posY > height) {
+            let index = snowflakes.indexOf(this);
+            snowflakes.splice(index, 1);
+        }
+    };
+
+    this.display = function () {
+        ellipse(this.posX, this.posY, this.size);
+    };
+}
