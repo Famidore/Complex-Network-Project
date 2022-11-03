@@ -1,11 +1,10 @@
-let button, input, canvas, t;
-let b;
+let button, input, canvas, t, b;
 
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   tempSetup(windowWidth, windowHeight);
-  b = new Blob(1, 25);
+  b = new Blob();
   inputSetup();
 }
 
@@ -15,10 +14,10 @@ function draw() {
   misc();
 
   translate(controls.view.x, controls.view.y);
-  scale(controls.view.zoom)
-  b.display();
+  scale(controls.view.zoom);
+  b.show();
 
-  //temp();
+  temp();
 }
 
 function gatherURL() {

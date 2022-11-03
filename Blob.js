@@ -1,15 +1,11 @@
 class Blob {
-    cunstructor(name, size) {
-        this.name = name;
-        this.size = size;
-        let x = width / 2;
-        let y = height / 2;
-
+    constructor() {
+        
     }
 
-    display() {
+    show() {
         fill(0, 255, 0);
         noStroke();
-        ellipse(this.x, this.y, this.size, this.size);
+        ellipse(width/2, height/2, 25, 25);
     }
 }
