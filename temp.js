@@ -53,11 +53,12 @@ function temp() {
 function misc() {
     textSize(20);
     textAlign(LEFT);
+    fill(255, 0, 150, 200)
     text('Paste a reddit community link below', input.x, input.y - 20);
 }
 
 function inputSetup() {
-    input = createInput();
+    input = createInput('Enter link here', 'text');
     input.style('color', '#8400ff');
     input.position(50, windowHeight - 50);
 
