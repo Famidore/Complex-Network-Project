@@ -1,11 +1,15 @@
-let button, input, canvas, t, b;
+let button, input, canvas, t;
+let blobs = [];
+const count = 10;
 
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   tempSetup(windowWidth, windowHeight);
-  b = new Blob();
   inputSetup();
+  for (let i = 0; i < count; i++) {
+    blobs.push(new Blob())
+  }
 }
 
 function draw() {
@@ -15,9 +19,11 @@ function draw() {
 
   translate(controls.view.x, controls.view.y);
   scale(controls.view.zoom);
-  b.show();
+  for (let i = 0; i < blobs.length; i++) {
+    blobs[i].display();
+  }
 
-  temp();
+  //temp();
 }
 
 function gatherURL() {
