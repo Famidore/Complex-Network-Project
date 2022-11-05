@@ -17,9 +17,9 @@ function tempSetup(sizeX, sizeY) {
 
 function temp() {
     if (mouseIsPressed) {
-        cursor(HAND)
+        cursor(HAND);
     } else {
-        cursor(ARROW)
+        cursor(ARROW);
     }
 }
 
