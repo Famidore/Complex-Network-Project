@@ -1,5 +1,5 @@
 let button, input, canvas, t;
-let blobs = [];
+let subs = [];
 const count = 10;
 
 
@@ -8,8 +8,8 @@ function setup() {
   tempSetup(windowWidth, windowHeight);
   inputSetup();
   for (let i = 0; i < count; i++) {
-    blobs.push(new Blob())
-  }
+    subs.push(new subReddit())
+  };
 }
 
 function draw() {
@@ -19,11 +19,10 @@ function draw() {
 
   translate(controls.view.x, controls.view.y);
   scale(controls.view.zoom);
-  for (let i = 0; i < blobs.length; i++) {
-    blobs[i].display();
+  for (let i = 0; i < subs.length; i++) {
+    subs[i].display();
   }
-
-  //temp();
+  temp();
 }
 
 function gatherURL() {
