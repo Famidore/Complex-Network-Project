@@ -32,7 +32,7 @@ function misc() {
 }
 
 function inputSetup() {
-    input = createInput('Enter link here', 'text');
+    input = createInput().attribute('placeholder', 'Enter link here');
     input.style('color', '#8400ff');
     input.position(50, windowHeight - 50);
 
