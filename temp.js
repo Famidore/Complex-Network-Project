@@ -26,7 +26,8 @@ function temp() {
 function misc() {
     textSize(20);
     textAlign(LEFT);
-    fill(255, 0, 150, 200)
+    fill(255, 0, 150, 200);
+    noStroke();
     text('Paste a reddit community link below', input.x, input.y - 20);
 }
 
@@ -35,8 +36,7 @@ function inputSetup() {
     input.style('color', '#8400ff');
     input.position(50, windowHeight - 50);
 
-    button = createButton('submit');
-    button.style('background-color', color(200));
+    button = createButton('Submit');
     button.position(input.x + input.width, windowHeight - 50);
     button.mousePressed(gatherURL);
 }
