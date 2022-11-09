@@ -1,14 +1,12 @@
 let button, input, canvas, t;
 let subs = [];
-let path = 'pythonWebscrapper/data.json'
-let path2 = 'pythonWebscrapper/fullData.json'
+let path = 'pythonWebscrapper/data.txt'
 
 const count = 10;
 
 function preload() {
-  d = loadJSON(path)
-  d2 = loadJSON(path2)
-  console.log(d2)
+  d = loadStrings(path)
+  console.log(random(d))
   
 
 }
@@ -21,6 +19,8 @@ function setup() {
   for (let i = 0; i < count; i++) {
     subs.push(new subReddit(random(width), random(height), 10, i))
   };
+  console.log(split(d[0], ' ')[0])
+
 }
 
 function draw() {
