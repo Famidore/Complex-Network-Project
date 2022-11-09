@@ -1,6 +1,17 @@
 let button, input, canvas, t;
 let subs = [];
+let path = 'pythonWebscrapper/data.json'
+let path2 = 'pythonWebscrapper/fullData.json'
+
 const count = 10;
+
+function preload() {
+  d = loadJSON(path)
+  d2 = loadJSON(path2)
+  console.log(d2)
+  
+
+}
 
 
 function setup() {

@@ -19,8 +19,6 @@ def getRecommendations(url):
             tries+=1
             pageContent = requests.get(url, timeout=3).text
             listed = []
-            # print(title)
-            # time.sleep(1)
             soup = BeautifulSoup(pageContent, 'html5lib')
             title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
             for i in title:
@@ -31,7 +29,7 @@ def getRecommendations(url):
                 print("Could not find recommendations in " + url)
                 break
         if listed:
-            writeJson({url: listed})
+            writeData(f"{url} = {listed}\n")
         time.sleep(2)
     else:
         print(f"Already looked at: {url}")
@@ -53,18 +51,11 @@ def doStuff(sub):
     
 
 
-def writeJson(new_data, filename='data.json'):
+def writeData(new_data, filename='data.txt'):
     with open(filename, 'r+') as file:
-        file_data = json.load(file)
-        l = []
-        for keys in file_data["details"]:
-            for k in keys:
-                l.append(str(k))
-        if str(list(new_data.keys())[0]) not in l:
+        if new_data not in file:
             # print(l, list(new_data.keys())[0])
-            file_data["details"].append(new_data)
-            file.seek(0)
-            json.dump(file_data, file, indent=4)
+            file.write(new_data)
             print("\n Saved the data \n")
         else:
             print("\n Key already exists \n")
