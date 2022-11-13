@@ -22,7 +22,11 @@ class subReddit {
 
     makePath() {
         if (count > 1) {
-            stroke(255, 0, 0);
+            if (this.openWindow) {
+                stroke(255, 0, 255);
+            } else {
+                stroke(255, 0, 0);
+            }
             line(this.x, this.y, subs[abs(this.ID - 1)].x, subs[abs(this.ID - 1)].y)
         };
     }
