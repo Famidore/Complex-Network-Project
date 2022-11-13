@@ -1,17 +1,23 @@
 class subReddit {
 
-    constructor(x, y, r, ID) {
+    constructor(x, y, r, ID, name, members, thumbnail) {
         this.openWindow = false;
         this.x = x;
         this.y = y;
         this.ID = ID;
         this.r = r
+
+        this.name = name
+        this.members = members
+        this.thumbnail = thumbnail
+
+        this.pfp = new Image()
+        this.pfp.src = this.thumbnail
     }
 
     display() {
-        fill(0, 255, 0, 150);
         noStroke();
-        ellipse(this.x, this.y, this.r * 2, this.r * 2);
+        drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
     }
 
     makePath() {
@@ -35,12 +41,13 @@ class subReddit {
             rect(this.x, this.y, 200, 100, 25);
             fill(255, 200);
             noStroke();
-            textAlign(CENTER, CENTER)
-            text(input.value(), this.x + 100, this.y + 50);
+            textSize(20)
+            textAlign(CENTER, BASELINE)
+            text(this.name, this.x + 100, this.y + 40);
+            textAlign(CENTER, TOP)
+            text(this.members + " members", this.x + 100, this.y + 50);
         }
     }
 
-    jsonLoader() {
-    }
 
 }
