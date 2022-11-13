@@ -31,13 +31,16 @@ class subReddit {
 
     windowOpen() {
         if (this.openWindow) {
-            fill(0, 200);
-            rect(this.x, this.y, 200, 100);
+            fill(0, 100);
+            rect(this.x, this.y, 200, 100, 25);
             fill(255, 200);
             noStroke();
             textAlign(CENTER, CENTER)
             text(input.value(), this.x + 100, this.y + 50);
         }
+    }
+
+    jsonLoader() {
     }
 
 }

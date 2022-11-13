@@ -1,6 +1,15 @@
 let button, input, canvas, t;
 let subs = [];
+let path = 'pythonWebscrapper/data.txt'
+
 const count = 10;
+
+function preload() {
+  d = loadStrings(path)
+  console.log(random(d))
+  
+
+}
 
 
 function setup() {
@@ -10,6 +19,8 @@ function setup() {
   for (let i = 0; i < count; i++) {
     subs.push(new subReddit(random(width), random(height), 10, i))
   };
+  console.log(split(d[0], ' ')[0])
+
 }
 
 function draw() {
