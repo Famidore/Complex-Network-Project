@@ -1,6 +1,6 @@
 class subReddit {
 
-    constructor(x, y, r, ID, name, members, thumbnail) {
+    constructor(x, y, r, ID, name, members, thumbnail, parent, parentID, children) {
         this.openWindow = false;
         this.x = x;
         this.y = y;
@@ -11,13 +11,29 @@ class subReddit {
         this.members = members
         this.thumbnail = thumbnail
 
-        this.pfp = new Image()
-        this.pfp.src = this.thumbnail
+        if (this.thumbnail) {
+            this.pfp = new Image()
+            this.pfp.src = this.thumbnail
+        }
+
+        this.parent = parent;
+        this.parentID = parentID
+        this.children = children = []
+
+        // print(this.children)
     }
 
     display() {
         noStroke();
-        drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+        if (this.pfp != null) {
+            drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+        } else {
+            fill(255, 0, 150)
+            textAlign(CENTER, CENTER)
+            textSize(50)
+            text(this.name, this.x, this.y)
+        }
+
     }
 
     makePath() {
@@ -27,7 +43,17 @@ class subReddit {
             } else {
                 stroke(255, 0, 0);
             }
-            line(this.x, this.y, subs[abs(this.ID - 1)].x, subs[abs(this.ID - 1)].y)
+            // print(this.children)
+            if (this.children) {
+                for (let i = 0; i<this.children.length; i++) {
+                    //stroke(0)
+                    line(this.x, this.y, subs[this.children[i]].x, subs[this.children[i]].y)
+                    //stroke(255);
+                }
+            }
+
+            
+
         };
     }
 
@@ -49,7 +75,13 @@ class subReddit {
             textAlign(CENTER, BASELINE)
             text(this.name, this.x + 100, this.y + 40);
             textAlign(CENTER, TOP)
-            text(this.members + " members", this.x + 100, this.y + 50);
+            if (this.parent) {
+                text(this.members + " members", this.x + 100, this.y + 50);
+                text("parent: " + this.parent, this.x + 100, this.y + 75)
+                text("children: " + this.children, this.x + 100, this.y + 100)
+                text("ID: " + this.ID, this.x + 100, this.y + 125)
+            }
+
         }
     }
 

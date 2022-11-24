@@ -73,11 +73,13 @@ def writeData(new_data, validURL, filename='data.txt'):
             print("\n Key already exists \n")
 
 
-starter = input('Submit a reddit community link: ')
-if starter[-1] == "/":
-    temp = list(starter)
-    temp[-1] = ""
-    starter = ''.join(temp)
-doStuff(getRecommendations(starter))
+if __name__ == '__main__':
 
-input("Program finished, press any key to exit...")
+    starter = input('Submit a reddit community link: ')
+    if starter[-1] == "/":
+        temp = list(starter)
+        temp[-1] = ""
+        starter = ''.join(temp)
+    doStuff(getRecommendations(starter))
+
+    input("Program finished, press any key to exit...")
