@@ -34,6 +34,8 @@ class subReddit {
             text(this.name, this.x, this.y)
         }
 
+        this.constructWeb()
+
     }
 
     makePath() {
@@ -45,15 +47,13 @@ class subReddit {
             }
             // print(this.children)
             if (this.children) {
-                for (let i = 0; i<this.children.length; i++) {
+                //print(this.name, this.children)
+                for (let i = 0; i < this.children.length; i++) {
                     //stroke(0)
                     line(this.x, this.y, subs[this.children[i]].x, subs[this.children[i]].y)
                     //stroke(255);
                 }
             }
-
-            
-
         };
     }
 
@@ -82,6 +82,24 @@ class subReddit {
                 text("ID: " + this.ID, this.x + 100, this.y + 125)
             }
 
+        }
+    }
+
+    constructWeb() {
+        if (this.parentID != null) {
+            this.parentX = subs[this.parentID].x
+            this.parentY = subs[this.parentID].y
+
+
+            this.childLen = subs[this.parentID].children.length
+            this.x = this.parentX;
+            this.y = this.parentY + 250;
+
+            for (let i = 0; i < this.childLen; i++) {
+                if (this.ID == subs[this.parentID].children[i]) {
+                    this.x += (floor(this.childLen / 2) - i) * 100
+                }
+            }
         }
     }
 
