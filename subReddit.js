@@ -18,9 +18,7 @@ class subReddit {
 
         this.parent = parent;
         this.parentID = parentID
-        this.children = children = []
-
-        // print(this.children)
+        this.children = children
     }
 
     display() {
@@ -33,9 +31,7 @@ class subReddit {
             textSize(50)
             text(this.name, this.x, this.y)
         }
-
         this.constructWeb()
-
     }
 
     makePath() {
@@ -45,16 +41,13 @@ class subReddit {
             } else {
                 stroke(255, 0, 0);
             }
-            // print(this.children)
             if (this.children) {
-                //print(this.name, this.children)
                 for (let i = 0; i < this.children.length; i++) {
-                    //stroke(0)
+                    stroke(0)
                     line(this.x, this.y, subs[this.children[i]].x, subs[this.children[i]].y)
-                    //stroke(255);
                 }
             }
-        };
+        }
     }
 
     interact() {
@@ -75,7 +68,7 @@ class subReddit {
             textAlign(CENTER, BASELINE)
             text(this.name, this.x + 100, this.y + 40);
             textAlign(CENTER, TOP)
-            if (this.parent) {
+            if (this.parentID) {
                 text(this.members + " members", this.x + 100, this.y + 50);
                 text("parent: " + this.parent, this.x + 100, this.y + 75)
                 text("children: " + this.children, this.x + 100, this.y + 100)
@@ -86,22 +79,20 @@ class subReddit {
     }
 
     constructWeb() {
-        if (this.parentID != null) {
+        if (this.parentID >= 1 && subs[this.parentID].children || this.parentID == 0) {
+            //print(this.parentID)
             this.parentX = subs[this.parentID].x
             this.parentY = subs[this.parentID].y
 
-
             this.childLen = subs[this.parentID].children.length
             this.x = this.parentX;
-            this.y = this.parentY + 250;
+            this.y = this.parentY + 150;
 
-            for (let i = 0; i < this.childLen; i++) {
+            for (let i = 0; i <= this.childLen; i++) {
                 if (this.ID == subs[this.parentID].children[i]) {
                     this.x += (floor(this.childLen / 2) - i) * 100
                 }
             }
         }
     }
-
-
 }
