@@ -1,6 +1,7 @@
 class subReddit {
 
     constructor(x, y, r, ID, name, members, thumbnail, parent, parentID, children) {
+        this.hidden = false
         this.openWindow = false;
         this.x = x;
         this.y = y;
@@ -22,33 +23,35 @@ class subReddit {
     }
 
     display() {
-        noStroke();
-        if (this.pfp != null) {
-            drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
-        } else {
-            fill(255, 0, 150)
-            textAlign(CENTER, CENTER)
-            textSize(50)
-            text(this.name, this.x, this.y)
+        if (!(this.hidden)) {
+            noStroke();
+            if (this.pfp != null) {
+                drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+            } else {
+                fill(255, 0, 150)
+                textAlign(CENTER, CENTER)
+                textSize(50)
+                text(this.name, this.x, this.y)
+            }
+            this.constructWeb()
+            //this.moveParent()
         }
-        
-        this.constructWeb()
-        this.moveParent()
-
     }
 
     makePath() {
-        if (count > 1) {
-            if (this.openWindow) {
-                stroke(255, 0, 255);
-            } else {
-                stroke(255, 0, 0);
-            }
-            if (this.children) {
-                //print(this.children)
-                for (let i = 0; i < this.children.length; i++) {
-                    stroke(0)
-                    line(this.x, this.y, subs[this.children[i]].x, subs[this.children[i]].y)
+        if (!(this.hidden)) {
+            if (count > 1) {
+                if (this.openWindow) {
+                    stroke(255, 0, 255);
+                } else {
+                    stroke(255, 0, 0);
+                }
+                if (this.children.length > 0) {
+                    for (let i = 0; i < this.children.length; i++) {
+                        stroke(0)
+                        line(this.x, this.y, subs[findByName(subs, this.children[i]).ID].x, subs[findByName(subs, this.children[i]).ID].y)
+
+                    }
                 }
             }
         }
@@ -72,7 +75,7 @@ class subReddit {
             textAlign(CENTER, BASELINE)
             text(this.name, this.x + 100, this.y + 40);
             textAlign(CENTER, TOP)
-            if (this.parentID) {
+            if (this.parent) {
                 text(this.members + " members", this.x + 100, this.y + 50);
                 text("parent: " + this.parent, this.x + 100, this.y + 75)
                 text("children: " + this.children, this.x + 100, this.y + 100)
@@ -83,8 +86,7 @@ class subReddit {
     }
 
     constructWeb() {
-        if (this.parentID >= 1 && subs[this.parentID].children || this.parentID == 0) {
-            //print(this.parentID)
+        if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
             this.parentX = subs[this.parentID].x
             this.parentY = subs[this.parentID].y
 
@@ -92,24 +94,9 @@ class subReddit {
             this.x = this.parentX;
             this.y = this.parentY + 150;
 
-            for (let i = 0; i <= this.childLen; i++) {
-                if (this.ID == subs[this.parentID].children[i]) {
+            for (let i = 0; i < this.childLen; i++) {
+                if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
                     this.x += (floor(this.childLen / 2) - i) * 50
-                }
-            }
-        }
-    }
-
-    moveParent() {
-        if (checkIfInside(parentArray, this.name)) {
-            var parIndex = parentArray.indexOf(this.name)
-            if (parIndex > 0 && checkIfInside(subs[parIndex - 1].children, this.ID)) {
-                var parChilIndex = subs[parIndex - 1].children.indexOf(this.ID)
-                //print(parChilIndex)
-                if (parChilIndex >= 0) {
-                    this.ID = subs[parIndex - 1].children[parChilIndex].ID
-                    this.x = subs[parIndex - 1].children[parChilIndex].x
-                    this.y = subs[parIndex - 1].children[parChilIndex].y
                 }
             }
         }

@@ -56,13 +56,22 @@ function exchangeInfo(sub1, sub2) {
         sub1.thumbnail = sub2.thumbnail
         sub1.parent = sub2.parent
         sub1.parentID = sub2.parentID
+        sub1.x = sub2.x
+        sub1.y = sub2.y
     }
 }
 
-function findByName(arrayOfSubs, n){
-    for (let i = 0; i < arrayOfSubs.length; i++){
-        if (arrayOfSubs[i].name == n){
+function findByName(arrayOfSubs, n) {
+    for (let i = 0; i < arrayOfSubs.length; i++) {
+        if (arrayOfSubs[i].name == n) {
             return arrayOfSubs[i]
         }
+    }
+}
+
+function inheritChildren(first, target) {
+    target.children = first.children
+    if (first.ID != 0 && first != target) {
+        first.hidden = true
     }
 }

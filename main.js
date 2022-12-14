@@ -29,25 +29,25 @@ function setup() {
 
     for (let i = 0; i < elements * 6; i += 6) {
       let index = subs.length
-      //if (!(checkIfInside(names, splitTokens(d[j], "'")[i + 1]))) {
-      //add child subs here
-      var tempName = splitTokens(d[j], "'")[i + 1]
-      var tempMembers = splitTokens(d[j], "'")[i + 3]
-      var tempThumbnail = splitTokens(d[j], "'")[i + 5]
+      if (!(checkIfInside(names, splitTokens(d[j], "'")[i + 1]))) {
+        //add child subs here
+        var tempName = splitTokens(d[j], "'")[i + 1]
+        var tempMembers = splitTokens(d[j], "'")[i + 3]
+        var tempThumbnail = splitTokens(d[j], "'")[i + 5]
 
-      subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, tempName, tempMembers, tempThumbnail, parent, parentId, []))
-      subs[parentId].children.push(index)
-      names.push(splitTokens(d[j], "'")[i + 1])
-      if (checkIfInside(parentArray, tempName)) {
-        print(findByName(subs, parentArray[parentArray.indexOf(tempName)]).ID)
-        exchangeInfo(findByName(subs, parentArray[parentArray.indexOf(tempName)]), subs[subs.length])
-      }
-      //};
+        subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, tempName, tempMembers, tempThumbnail, parent, parentId, []))
+        subs[parentId].children.push(tempName)
+        names.push(tempName)
+      };
     };
   }
-  // print(parentArray)
-  // print(subs)
-  // print(parentArray)
+  for (let i = 0; i < subs.length; i++){
+    for (let j = 0; j < parentArray.length; j++){
+      if (subs[i].name == parentArray[j]){
+        inheritChildren(subs[i], findByName(subs, parentArray[j]))
+      }
+    }
+  }
 }
 function draw() {
   background(51);
@@ -58,15 +58,22 @@ function draw() {
   translate(controls.view.x, controls.view.y);
   scale(controls.view.zoom);
   for (let i = 0; i < subs.length; i++) {
-    subs[i].makePath();
-
+    if (subs[i]) {
+      subs[i].makePath();
+    }
   }
   for (let i = 0; i < subs.length; i++) {
-    subs[i].display();
-    subs[i].windowOpen();
+    if (subs[i]) {
+      subs[i].display();
+      subs[i].windowOpen();
+    }
   }
 
   temp();
+  //print(subs)
+  // if(t > 1/2){
+  //   noLoop()
+  // }
 }
 
 function gatherURL() {
