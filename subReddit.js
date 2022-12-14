@@ -2,6 +2,8 @@ class subReddit {
 
     constructor(x, y, r, ID, name, members, thumbnail, parent, parentID, children) {
         this.hidden = false
+        this.polar = true
+
         this.openWindow = false;
         this.x = x;
         this.y = y;
@@ -34,7 +36,6 @@ class subReddit {
                 text(this.name, this.x, this.y)
             }
             this.constructWeb()
-            //this.moveParent()
         }
     }
 
@@ -50,7 +51,6 @@ class subReddit {
                     for (let i = 0; i < this.children.length; i++) {
                         stroke(0)
                         line(this.x, this.y, subs[findByName(subs, this.children[i]).ID].x, subs[findByName(subs, this.children[i]).ID].y)
-
                     }
                 }
             }
@@ -66,7 +66,7 @@ class subReddit {
     }
 
     windowOpen() {
-        if (this.openWindow) {
+        if (this.openWindow && !this.hidden) {
             fill(0, 100);
             rect(this.x, this.y, 200, 100, 25);
             fill(255, 200);
@@ -86,19 +86,19 @@ class subReddit {
     }
 
     constructWeb() {
-        if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
-            this.parentX = subs[this.parentID].x
-            this.parentY = subs[this.parentID].y
+            if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
+                this.parentX = subs[this.parentID].x
+                this.parentY = subs[this.parentID].y
 
-            this.childLen = subs[this.parentID].children.length
-            this.x = this.parentX;
-            this.y = this.parentY + 150;
+                this.childLen = subs[this.parentID].children.length
+                this.x = this.parentX;
+                this.y = this.parentY + 100;
 
-            for (let i = 0; i < this.childLen; i++) {
-                if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
-                    this.x += (floor(this.childLen / 2) - i) * 50
+                for (let i = 0; i < this.childLen; i++) {
+                    if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
+                        this.x += (floor(this.childLen / 2) - i) * 150
+                    }
                 }
             }
-        }
     }
 }

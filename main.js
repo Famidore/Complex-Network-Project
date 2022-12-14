@@ -1,6 +1,6 @@
 let button, input, canvas, t;
 let subs = [];
-let path = 'pythonWebscrapper/data.txt'
+let path = 'pythonWebscrapper/exampleData.txt'
 let count, elements
 let names = [];
 let parentArray = []
@@ -23,7 +23,7 @@ function setup() {
     let parentId = subs.length
     // Add parent here
     names.push(parent)
-    subs.push(new subReddit(width / 2, height / 2 + j * 250, 20, parentId, parent, null, null, null, null, []))
+    subs.push(new subReddit(width / 2, height / 2 + j * 50, 20, parentId, parent, null, null, null, null, []))
     parentArray.push(parent)
 
 

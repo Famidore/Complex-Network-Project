@@ -61,7 +61,7 @@ def doStuff(sub):
         input("Program Finished")
 
 
-def writeData(new_data, validURL, filename='data.txt'):
+def writeData(new_data, validURL, filename='exampleData.txt'):
     verified = []
     with open(filename, 'r+') as file:
         for line in file.readlines():
