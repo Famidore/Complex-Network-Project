@@ -22,21 +22,26 @@ function setup() {
     let parentId = subs.length
     print(parent, parentId)
     // Add parent here
-    names.push(parent)
-    subs.push(new subReddit(width / 2 + j * 500, height / 2, 20, parentId, parent, null, null, null, null, []))
-    print(subs[0])
+      names.push(parent)
+      subs.push(new subReddit(width / 2 + j * 750, height / 2, 20, parentId, parent, null, null, null, null, []))
     
-    for (let i = 0; i < elements * 6; i += 6) {
-      if (!(splitTokens(d[j], "'")[i + 1] in names)) {
-        let index = (i / 6) + parentId + 1
 
-        subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, splitTokens(d[j], "'")[i + 1], splitTokens(d[j], "'")[i + 3], splitTokens(d[j], "'")[i + 5], parent, parentId, []))
+    for (let i = 0; i < elements * 6; i += 6) {
+      let index = subs.length
+      if (!(checkIfInside(names, splitTokens(d[j], "'")[i + 1]))) {
+        //let index = (i / 6) + parentId + 1
+        var tempName = splitTokens(d[j], "'")[i + 1]
+        var tempMembers = splitTokens(d[j], "'")[i + 3]
+        var tempThumbnail = splitTokens(d[j], "'")[i + 5]
+
+
+        subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, tempName, tempMembers, tempThumbnail, parent, parentId, []))
         subs[parentId].children.push(index)
         names.push(splitTokens(d[j], "'")[i + 1])
       };
+      
     };
   }
-  print(names)
   print(subs)
 }
 function draw() {

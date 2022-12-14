@@ -42,6 +42,7 @@ class subReddit {
                 stroke(255, 0, 0);
             }
             if (this.children) {
+                //print(this.children)
                 for (let i = 0; i < this.children.length; i++) {
                     stroke(0)
                     line(this.x, this.y, subs[this.children[i]].x, subs[this.children[i]].y)
@@ -90,9 +91,15 @@ class subReddit {
 
             for (let i = 0; i <= this.childLen; i++) {
                 if (this.ID == subs[this.parentID].children[i]) {
-                    this.x += (floor(this.childLen / 2) - i) * 100
+                    this.x += (floor(this.childLen / 2) - i) * 50
                 }
             }
         }
+    }
+
+    moveParent() {
+         if(this.children != []){
+            
+         }
     }
 }

@@ -40,3 +40,12 @@ function inputSetup() {
     button.position(input.x + input.width, windowHeight - 50);
     button.mousePressed(gatherURL);
 }
+
+function checkIfInside(array, item) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] == item) {
+            return true
+        }
+    }
+    return false
+}
