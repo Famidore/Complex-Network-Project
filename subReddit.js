@@ -31,7 +31,10 @@ class subReddit {
             textSize(50)
             text(this.name, this.x, this.y)
         }
+        
         this.constructWeb()
+        this.moveParent()
+
     }
 
     makePath() {
@@ -98,8 +101,17 @@ class subReddit {
     }
 
     moveParent() {
-         if(this.children != []){
-            
-         }
+        if (checkIfInside(parentArray, this.name)) {
+            var parIndex = parentArray.indexOf(this.name)
+            if (parIndex > 0 && checkIfInside(subs[parIndex - 1].children, this.ID)) {
+                var parChilIndex = subs[parIndex - 1].children.indexOf(this.ID)
+                //print(parChilIndex)
+                if (parChilIndex >= 0) {
+                    this.ID = subs[parIndex - 1].children[parChilIndex].ID
+                    this.x = subs[parIndex - 1].children[parChilIndex].x
+                    this.y = subs[parIndex - 1].children[parChilIndex].y
+                }
+            }
+        }
     }
 }

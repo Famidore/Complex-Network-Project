@@ -49,3 +49,20 @@ function checkIfInside(array, item) {
     }
     return false
 }
+
+function exchangeInfo(sub1, sub2) {
+    if (sub1.members && sub1.thumbnail && sub1.parent && sub1.parentID) {
+        sub1.members = sub2.members
+        sub1.thumbnail = sub2.thumbnail
+        sub1.parent = sub2.parent
+        sub1.parentID = sub2.parentID
+    }
+}
+
+function findByName(arrayOfSubs, n){
+    for (let i = 0; i < arrayOfSubs.length; i++){
+        if (arrayOfSubs[i].name == n){
+            return arrayOfSubs[i]
+        }
+    }
+}
