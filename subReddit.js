@@ -1,9 +1,11 @@
 class subReddit {
 
     constructor(x, y, r, ID, name, members, thumbnail, parent, parentID, children) {
+        // Visuals setup
         this.hidden = false
         this.polar = true
 
+        // Basic parameters setup
         this.openWindow = false;
         this.x = x;
         this.y = y;
@@ -14,11 +16,13 @@ class subReddit {
         this.members = members
         this.thumbnail = thumbnail
 
+        // Check if the thumbnail is available
         if (this.thumbnail) {
             this.pfp = new Image()
             this.pfp.src = this.thumbnail
         }
 
+        // Add basic connections
         this.parent = parent;
         this.parentID = parentID
         this.children = children
@@ -27,6 +31,8 @@ class subReddit {
     display() {
         if (!(this.hidden)) {
             noStroke();
+
+            // Fill with image from link, or just print sub's name
             if (this.pfp != null) {
                 drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
             } else {
@@ -39,6 +45,8 @@ class subReddit {
         }
     }
 
+
+    // Add connections
     makePath() {
         if (!(this.hidden)) {
             if (count > 1) {
@@ -57,6 +65,7 @@ class subReddit {
         }
     }
 
+    // Calculate sub's position, after transforming it in canvas
     interact() {
         if ((dist((mouseX - controls.view.x) / controls.view.zoom, (mouseY - controls.view.y) / controls.view.zoom, this.x, this.y) <= this.r)) {
             this.openWindow = true;
@@ -65,6 +74,7 @@ class subReddit {
         }
     }
 
+    // Open window if clicked on
     windowOpen() {
         if (this.openWindow && !this.hidden) {
             fill(0, 100);
@@ -85,6 +95,7 @@ class subReddit {
         }
     }
 
+    // Basic layout for presenting the subs
     constructWeb() {
             if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
                 this.parentX = subs[this.parentID].x
@@ -94,6 +105,7 @@ class subReddit {
                 this.x = this.parentX;
                 this.y = this.parentY + 100;
 
+                // Layout the subs based on ammount of children
                 for (let i = 0; i < this.childLen; i++) {
                     if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
                         this.x += (floor(this.childLen / 2) - i) * 150

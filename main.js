@@ -1,17 +1,19 @@
 let button, input, canvas, t;
 let subs = [];
-let path = 'pythonWebscrapper/exampleData.txt'
+let path = 'pythonWebscrapper/data.txt'
 let count, elements
 let names = [];
 let parentArray = []
 
 
+// Load the data
 function preload() {
   d = loadStrings(path)
 }
 
 
 function setup() {
+  // Do all the setups
   count = d.length - 1;
   canvas = createCanvas(windowWidth, windowHeight);
   tempSetup(windowWidth, windowHeight);
@@ -21,16 +23,18 @@ function setup() {
     elements = (splitTokens(d[j], "'").length - 1) / 6
     let parent = split(splitTokens(d[j], ". ")[2], 'com/')[1]
     let parentId = subs.length
-    // Add parent here
+    // Add parent
     names.push(parent)
     subs.push(new subReddit(width / 2, height / 2 + j * 50, 20, parentId, parent, null, null, null, null, []))
     parentArray.push(parent)
 
-
+    // Add child here
     for (let i = 0; i < elements * 6; i += 6) {
       let index = subs.length
+
+      // Verify if the sub is already added
       if (!(checkIfInside(names, splitTokens(d[j], "'")[i + 1]))) {
-        //add child subs here
+
         var tempName = splitTokens(d[j], "'")[i + 1]
         var tempMembers = splitTokens(d[j], "'")[i + 3]
         var tempThumbnail = splitTokens(d[j], "'")[i + 5]
@@ -41,22 +45,28 @@ function setup() {
       };
     };
   }
-  for (let i = 0; i < subs.length; i++){
-    for (let j = 0; j < parentArray.length; j++){
-      if (subs[i].name == parentArray[j]){
+
+  // Transfer children to main parent
+  for (let i = 0; i < subs.length; i++) {
+    for (let j = 0; j < parentArray.length; j++) {
+      if (subs[i].name == parentArray[j]) {
         inheritChildren(subs[i], findByName(subs, parentArray[j]))
       }
     }
   }
 }
+
 function draw() {
   background(51);
   t = frameCount / 60;
   misc();
 
 
+  // Translate and zoom screen
   translate(controls.view.x, controls.view.y);
   scale(controls.view.zoom);
+
+  // Connect subs with lines
   for (let i = 0; i < subs.length; i++) {
     if (subs[i]) {
       subs[i].makePath();
@@ -70,12 +80,10 @@ function draw() {
   }
 
   temp();
-  //print(subs)
-  // if(t > 1/2){
-  //   noLoop()
-  // }
 }
 
+
+// TODO: let user choose his sub
 function gatherURL() {
   print(input.value());
 }

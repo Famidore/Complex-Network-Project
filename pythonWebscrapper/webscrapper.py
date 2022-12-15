@@ -16,6 +16,8 @@ def getRecommendations(url):
         tries = 0
         title = None
         while not title:
+
+            # Get website 
             tries += 1
             try:
                 pageContent = requests.get(url, timeout=8).text
@@ -25,10 +27,14 @@ def getRecommendations(url):
                 time.sleep(5)
                 pass
             listed = []
+
+            # Search request output for title, members, image path
             soup = BeautifulSoup(pageContent, 'html5lib')
             title = soup.find_all(class_="_3BFvyrImF3et_ZF21Xd8SC")
             members = soup.find_all(class_="e0X82913OdCTkFf2HU-WL")
             image = soup.find_all("img", class_="_2BR7Oy0CAj5EiSDYQ--CAE")
+
+            # If new recommendations avaliable, lock it in nested array
             if title:
                 for i, j, k in zip(title, members, image):
                     print(f"\t{i.text:>24}\t\t{j.text:17}")
@@ -47,6 +53,7 @@ def getRecommendations(url):
     return listed
 
 
+# Search through reccomendations
 def doStuff(sub):
     if sub:
         for start in sub:
@@ -61,6 +68,7 @@ def doStuff(sub):
         input("Program Finished")
 
 
+# Save data as txt
 def writeData(new_data, validURL, filename='exampleData.txt'):
     verified = []
     with open(filename, 'r+') as file:
@@ -75,6 +83,7 @@ def writeData(new_data, validURL, filename='exampleData.txt'):
 
 if __name__ == '__main__':
 
+    # Get starting reddit from user input
     starter = input('Submit a reddit community link: ')
     if starter[-1] == "/":
         temp = list(starter)

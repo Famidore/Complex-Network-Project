@@ -31,6 +31,8 @@ function misc() {
     text('Paste a reddit community link below', input.x, input.y - 20);
 }
 
+
+// Setup for input box
 function inputSetup() {
     input = createInput().attribute('placeholder', 'Enter link here');
     input.style('color', '#8400ff');
@@ -50,6 +52,8 @@ function checkIfInside(array, item) {
     return false
 }
 
+
+// Transfer sub's parameters
 function exchangeInfo(sub1, sub2) {
     if (sub1.members && sub1.thumbnail && sub1.parent && sub1.parentID) {
         sub1.members = sub2.members
@@ -61,6 +65,8 @@ function exchangeInfo(sub1, sub2) {
     }
 }
 
+
+// Return sub's object searching by name
 function findByName(arrayOfSubs, n) {
     for (let i = 0; i < arrayOfSubs.length; i++) {
         if (arrayOfSubs[i].name == n) {
@@ -69,6 +75,8 @@ function findByName(arrayOfSubs, n) {
     }
 }
 
+
+// Transfer the sub's children and give them the new parent
 function inheritChildren(first, target) {
     target.children = first.children
     if (first.ID != 0 && first != target) {
