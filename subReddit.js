@@ -97,20 +97,20 @@ class subReddit {
 
     // Basic layout for presenting the subs
     constructWeb() {
-            if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
-                this.parentX = subs[this.parentID].x
-                this.parentY = subs[this.parentID].y
+        if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
+            this.parentX = subs[this.parentID].x
+            this.parentY = subs[this.parentID].y
 
-                this.childLen = subs[this.parentID].children.length
-                this.x = this.parentX;
-                this.y = this.parentY + 100;
+            this.childLen = subs[this.parentID].children.length
+            this.x = this.parentX;
+            this.y = this.parentY + 100;
 
-                // Layout the subs based on ammount of children
-                for (let i = 0; i < this.childLen; i++) {
-                    if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
-                        this.x += (floor(this.childLen / 2) - i) * 150
-                    }
+            // Layout the subs based on ammount of children
+            for (let i = 0; i < this.childLen; i++) {
+                if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
+                    this.x += (floor(this.childLen / 2) - i) * 150
                 }
             }
+        }
     }
 }

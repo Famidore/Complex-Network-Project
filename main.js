@@ -1,6 +1,7 @@
 let button, input, canvas, t;
 let subs = [];
-let path = 'pythonWebscrapper/data.txt'
+//let path = 'pythonWebscrapper/data.txt'
+let path = 'pythonWebscrapper/exampleData.txt'
 let count, elements
 let names = [];
 let parentArray = []
@@ -59,6 +60,10 @@ function setup() {
 function draw() {
   background(51);
   t = frameCount / 60;
+
+  // if (t > 2/60){
+  //   noLoop()
+  // }
   misc();
 
 
@@ -80,6 +85,7 @@ function draw() {
   }
 
   temp();
+  print(subs)
 }
 
 
