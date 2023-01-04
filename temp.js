@@ -78,8 +78,8 @@ function findByName(arrayOfSubs, n) {
 
 // Transfer the sub's children and give them the new parent
 function inheritChildren(first, target) {
-    target.children = first.children
     if (first.ID != 0 && first != target) {
+        target.children = first.children
         first.hidden = true
         for (let i = 0; i < target.children.length; i++){
             findByName(subs, target.children[i]).parentID = target.ID

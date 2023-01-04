@@ -26,7 +26,7 @@ function setup() {
     let parentId = subs.length
     // Add parent
     names.push(parent)
-    subs.push(new subReddit(width / 2, height / 2 + j * 50, 20, parentId, parent, null, null, null, null, []))
+    subs.push(new subReddit(width / 2, height / 2 + j * 50, 20, parentId, parent, null, null, null, null, [], random(1,3)))
     parentArray.push(parent)
 
     // Add child here
@@ -40,9 +40,9 @@ function setup() {
         var tempMembers = splitTokens(d[j], "'")[i + 3]
         var tempThumbnail = splitTokens(d[j], "'")[i + 5]
 
-        subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, tempName, tempMembers, tempThumbnail, parent, parentId, []))
+        subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, tempName, tempMembers, tempThumbnail, parent, parentId, [], random(1, 3)))
         subs[parentId].children.push(tempName)
-        names.push(tempName)
+        //names.push(tempName)
       };
     };
   }
@@ -55,15 +55,14 @@ function setup() {
       }
     }
   }
+  
+  
+  console.log(subs)
 }
 
 function draw() {
   background(51);
   t = frameCount / 60;
-
-  // if (t > 2/60){
-  //   noLoop()
-  // }
   misc();
 
 
@@ -83,15 +82,21 @@ function draw() {
       subs[i].windowOpen();
     }
   }
-
   temp();
-  print(subs)
+  //console.log(subs)
+
+  for(let i = 0; i < subs.length; i++){
+    if (!(subs[i].connected)){
+      subs[i].hidden = true
+    }
+  }
+  
 }
 
 
 // TODO: let user choose his sub
 function gatherURL() {
-  print(input.value());
+  console.log(input.value());
 }
 
 function mouseClicked() {
