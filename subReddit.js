@@ -1,6 +1,6 @@
 class subReddit {
 
-    constructor(x, y, r, ID, name, members, thumbnail, parent, parentID, children) {
+    constructor(x, y, r, ID, name, members, thumbnail, parent, parentID, children, bias) {
         // Visuals setup
         this.hidden = false
         this.polar = true
@@ -26,6 +26,10 @@ class subReddit {
         this.parent = parent;
         this.parentID = parentID
         this.children = children
+
+        this.theta = 0
+        this.connected = false
+        this.bias = bias
     }
 
     display() {
@@ -57,8 +61,12 @@ class subReddit {
                 }
                 if (this.children.length > 0) {
                     for (let i = 0; i < this.children.length; i++) {
-                        stroke(0)
-                        line(this.x, this.y, subs[findByName(subs, this.children[i]).ID].x, subs[findByName(subs, this.children[i]).ID].y)
+                        if (!(subs[findByName(subs, this.children[i]).ID].hidden)) {
+                            stroke(0)
+                            line(this.x, this.y, subs[findByName(subs, this.children[i]).ID].x, subs[findByName(subs, this.children[i]).ID].y)
+                            this.connected = true
+                            subs[findByName(subs, this.children[i]).ID].connected = true
+                        }
                     }
                 }
             }
@@ -97,18 +105,19 @@ class subReddit {
 
     // Basic layout for presenting the subs
     constructWeb() {
-        if (this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children || this.parentID == 0) {
+        if ((this.parentID >= 1 && subs[this.parentID] && subs[this.parentID].children) || this.parentID == 0) {
             this.parentX = subs[this.parentID].x
             this.parentY = subs[this.parentID].y
 
             this.childLen = subs[this.parentID].children.length
             this.x = this.parentX;
-            this.y = this.parentY + 100;
+            this.y = this.parentY + this.bias * 25;
 
             // Layout the subs based on ammount of children
             for (let i = 0; i < this.childLen; i++) {
                 if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
-                    this.x += (floor(this.childLen / 2) - i) * 150
+                    this.x += (floor(this.childLen / 2) - i) * 100
+                    this.y += i * 50
                 }
             }
         }
