@@ -69,7 +69,7 @@ def doStuff(sub):
 
 
 # Save data as txt
-def writeData(new_data, validURL, filename='exampleData.txt'):
+def writeData(new_data, validURL, filename='exampleData2.txt'):
     verified = []
     with open(filename, 'r+') as file:
         for line in file.readlines():
@@ -79,6 +79,8 @@ def writeData(new_data, validURL, filename='exampleData.txt'):
             print("\n Saved the data \n")
         else:
             print("\n Key already exists \n")
+
+    
 
 
 if __name__ == '__main__':

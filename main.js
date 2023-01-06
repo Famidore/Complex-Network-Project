@@ -1,7 +1,7 @@
 let button, input, canvas, t;
 let subs = [];
 //let path = 'pythonWebscrapper/data.txt'
-let path = 'pythonWebscrapper/exampleData.txt'
+let path = 'pythonWebscrapper/exampleData2.txt'
 let count, elements
 let names = [];
 let parentArray = []
@@ -26,7 +26,7 @@ function setup() {
     let parentId = subs.length
     // Add parent
     names.push(parent)
-    subs.push(new subReddit(width / 2, height / 2 + j * 50, 20, parentId, parent, null, null, null, null, [], random(1,3)))
+    subs.push(new subReddit(width/2, j * 100, 15, parentId, parent, null, null, null, null, [], random(0,2)))
     parentArray.push(parent)
 
     // Add child here
@@ -40,7 +40,7 @@ function setup() {
         var tempMembers = splitTokens(d[j], "'")[i + 3]
         var tempThumbnail = splitTokens(d[j], "'")[i + 5]
 
-        subs.push(new subReddit(random(300, 500), random(300, 500), 20, index, tempName, tempMembers, tempThumbnail, parent, parentId, [], random(1, 3)))
+        subs.push(new subReddit(random(300, 500), random(300, 500), 15, index, tempName, tempMembers, tempThumbnail, parent, parentId, [], random(0, 2)))
         subs[parentId].children.push(tempName)
         //names.push(tempName)
       };
@@ -97,6 +97,7 @@ function draw() {
 // TODO: let user choose his sub
 function gatherURL() {
   console.log(input.value());
+  console.log(controls.view.zoom);
 }
 
 function mouseClicked() {
