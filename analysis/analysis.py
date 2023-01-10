@@ -4,7 +4,7 @@ import numpy as np
 
 h, t = os.path.split(__file__)
 h, t = os.path.split(h)
-data_src = os.path.join(h, 'pythonWebscrapper\exampleData2.txt')
+data_src = os.path.join(h, 'pythonWebscrapper\exampleData3.txt')
 
 names = []
 members = []
