@@ -38,7 +38,15 @@ class subReddit {
 
             // Fill with image from link, or just print sub's name
             if (this.pfp != null) {
-                drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2 , this.r * 2);
+                try {
+                    drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+                } catch (error) {
+                    fill(255, 0, 150)
+                    textAlign(CENTER, CENTER)
+                    textSize(12)
+                    text(this.name, this.x, this.y)
+                }
+
             } else {
                 fill(255, 0, 150)
                 textAlign(CENTER, CENTER)
