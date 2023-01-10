@@ -38,7 +38,7 @@ class subReddit {
 
             // Fill with image from link, or just print sub's name
             if (this.pfp != null) {
-                drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+                drawingContext.drawImage(this.pfp, this.x - this.r, this.y - this.r, this.r * 2 , this.r * 2);
             } else {
                 fill(255, 0, 150)
                 textAlign(CENTER, CENTER)
@@ -95,9 +95,9 @@ class subReddit {
             textAlign(CENTER, TOP)
             if (this.parent) {
                 text(this.members + " members", this.x + 100, this.y + 50);
-                text("parent: " + this.parent, this.x + 100, this.y + 75)
-                text("children: " + this.children, this.x + 100, this.y + 100)
-                text("ID: " + this.ID, this.x + 100, this.y + 125)
+                //text("parent: " + this.parent, this.x + 100, this.y + 75)
+                text("children: " + this.children.length, this.x + 100, this.y + 75)
+                //text("ID: " + this.ID, this.x + 100, this.y + 125)
             }
 
         }
@@ -111,13 +111,13 @@ class subReddit {
 
             this.childLen = subs[this.parentID].children.length
             this.x = this.parentX;
-            this.y = this.parentY + this.bias * 25;
+            this.y = this.parentY + (this.bias * 25);
 
             // Layout the subs based on ammount of children
             for (let i = 0; i < this.childLen; i++) {
                 if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
-                    this.x += (floor(this.childLen / 2) - i) * 100
-                    this.y += i * 50
+                    this.x += (floor(this.childLen / 2) - i) * 100 * this.bias
+                    this.y += i * 75 * this.bias
                 }
             }
         }
