@@ -124,7 +124,7 @@ class subReddit {
             // Layout the subs based on ammount of children
             for (let i = 0; i < this.childLen; i++) {
                 if (this.ID == findByName(subs, subs[this.parentID].children[i]).ID) {
-                    this.x += (floor(this.childLen / 2) - i) * 100 * this.bias
+                    this.x += (floor(this.childLen / 2) - i) * 250 * this.bias
                     this.y += i * 75 * this.bias
                 }
             }

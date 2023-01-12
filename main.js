@@ -1,7 +1,7 @@
 let button, input, canvas, t;
 let subs = [];
-//let path = 'pythonWebscrapper/data.txt'
-let path = 'pythonWebscrapper/exampleData2.txt'
+// let path = 'pythonWebscrapper/data.txt'
+let path = 'pythonWebscrapper/exampleData.txt'
 let count, elements
 let names = [];
 let parentArray = []
